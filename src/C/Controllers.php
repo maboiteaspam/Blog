@@ -28,11 +28,13 @@ class Controllers {
         return function (Application $app, Request $request) {
             /* @var $entryRepo \C\BlogData\EntryRepositoryInterface as EntryRepo */
             $entryRepo = $app[$this->entryRepo];
-            return Transforms::transform($app)
+            Transforms::transform()
+                ->setLayout($app['layout'])
                 ->setTemplate('root', __DIR__.'/templates/entry-list.php')
                 ->setTemplate('root', [
                     'entries' => $entryRepo->mostRecent()
-                ])->respond($request);
+                ]);
+            return $app['layout.responder']->respond($app['layout'], $request);
         };
     }
 
@@ -40,11 +42,13 @@ class Controllers {
         return function (Application $app, Request $request, $id) {
             /* @var $entryRepo \C\BlogData\EntryRepositoryInterface as EntryRepo */
             $entryRepo = $app[$this->entryRepo];
-            return Transforms::transform($app)
+            Transforms::transform()
+                ->setLayout($app['layout'])
                 ->setTemplate('root', __DIR__.'/templates/entry-list.php')
                 ->setTemplate('root', [
                     'entry' => $entryRepo->byId($id)
-                ])->respond($request);
+                ]);
+            return $app['layout.responder']->respond($app['layout'], $request);
         };
     }
 
@@ -52,11 +56,13 @@ class Controllers {
         return function (Application $app, Request $request) {
             /* @var $commentRepo \C\BlogData\CommentRepositoryInterface as EntryRepo */
             $commentRepo = $app[$this->commentRepo];
-            return Transforms::transform($app)
+            Transforms::transform()
+                ->setLayout($app['layout'])
                 ->setTemplate('root', __DIR__.'/templates/entry-comments.php')
                 ->setTemplate('root', [
                     'comments' => $commentRepo->mostRecent()
-                ])->respond($request);
+                ]);
+            return $app['layout.responder']->respond($app['layout'], $request);
         };
     }
 
