@@ -10,6 +10,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 class CommentForm extends AbstractType
 {
 
+    public $email;
+    public $name;
+    public $comment;
+
 //    public static function loadValidatorMetadata(ClassMetadata $metadata)
 //    {
 //        $metadata->addPropertyConstraint('email', new Assert\NotBlank());

@@ -8,7 +8,8 @@ FORM FORM FORM
 <?php
 echo date("Y-m-d H:i:s");
 echo $this->form_start($form);
-echo $this->form_rows($form);
-echo $this->submit_widget($form, ['label'=>'submit']);
+echo $this->form_row($form['email']);
+echo $this->form_row($form['name']);
+echo $this->form_row($form['comment'], ['type'=>'textarea']);
 echo $this->form_end($form);
 ?>
