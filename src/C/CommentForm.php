@@ -30,6 +30,7 @@ class CommentForm extends AbstractType
         ]);
         $builder->add('name', 'text', ['required'=>!true]);
         $builder->add('comment', 'text', ['required'=>!true]);
+        $builder->add('subscribe', 'submit');
     }
 
     public function getName()
